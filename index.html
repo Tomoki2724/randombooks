@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ジャケ買い！</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 50px;
+            margin: 0;
+        }
+        header {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 36px;
+            margin: 0;
+            color: #333;
+        }
+        #books-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .book-item {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 150px;
+            text-align: center;
+        }
+        .book-cover {
+            width: 100px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .book-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .book-author {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        #random-books-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #random-books-btn:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 767px) {
+            #books-container {
+                display: block;
+                text-align: center;
+            }
+            .book-item {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto 20px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ジャケ買い！</h1>
+    </header>
+    
+    <div id="books-container"></div>
+    <button id="random-books-btn">別の本を紹介する</button>
+
+    <script>
+        const books = [
+            { title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
+            { title: "君の名は。", author: "新海誠", isbn: "4041026229" },
+            { title: "1Q84", author: "村上春樹", isbn: "4101001596" },
+            { title: "コンビニ人間", author: "村田沙耶香", isbn: "4167911302" },
+            { title: "火花", author: "又吉直樹", isbn: " 4167907828" },
+            { title: "海辺のカフカ", author: "村上春樹", isbn: "4101001545" },
+            { title: "成瀬は天下を取りにいく", author: "宮島未奈 ", isbn: "4103549513" },
+            { title: "ツナグ", author: "辻村深月", isbn: "4101388814" },
+　　　　　　{ title: "夏の庭―The Friends", author: "湯本香樹実", isbn: "4101315116" },
+　　　　　　{ title: "西の魔女が死んだ", author: "梨木香歩 ", isbn: "4101253323" },
+　　　　　　{ title: "カラフル", author: "森絵都", isbn: "4167741016" },
+　　　　　　{ title: "あと少し、もう少し", author: "瀬尾まいこ", isbn: "4101297738" },
+　　　　　　{ title: "そして、バトンは渡された", author: "瀬尾まいこ", isbn: "4167915545" },
+　　　　　　{ title: "クスノキの女神", author: "東野圭吾", isbn: "4408538566" },
+　　　　　　{ title: "運転者", author: "喜多川泰", isbn: "4799324500" },
+　　　　　　{ title: "夢をかなえるゾウ1", author: "水野 敬也", isbn: "4866512415" },
+　　　　　　{ title: "52ヘルツのクジラたち", author: "町田 そのこ", isbn: "4122073707" },
+　　　　　　{ title: "傲慢と善良", author: "辻村 深月", isbn: "4022650591" },
+　　　　　　{ title: "流浪の月", author: "凪良 ゆう", isbn: "4488803016" },
+　　　　　　{ title: "ツミデミック", author: "一穂ミチ", isbn: "4334101399" },
+　　　　　　{ title: "サンショウウオの四十九日", author: "朝比奈 秋", isbn: "4103557311" },
+            { title: "さいはての彼女", author: "原田 マハ", isbn: "4041006422" },
+            { title: "本日は、お日柄もよく", author: "原田 マハ", isbn: "4198937060" },
+            { title: "正欲", author: "朝井 リョウ", isbn: "4101269335" },
+　　　　　　{ title: "変な家", author: "雨穴", isbn: "4864108455" },
+　　　　　　{ title: "変な絵", author: "雨穴", isbn: "4575245674" },
+　　　　　　{ title: "変な家２　〜11の間取り図〜", author: "雨穴", isbn: "4864109826" },
+　　　　　　{ title: "また、同じ夢を見ていた", author: "住野 よる", isbn: "4575521256" },
+　　　　　　{ title: "君の膵臓をたべたい", author: "住野 よる", isbn: "4575519944" },
+　　　　　　{ title: "青くて痛くて脆い", author: "住野 よる", isbn: "4041090156" },
+　　　　　　{ title: "ライ麦畑でつかまえて", author: "J.D.サリンジャー", isbn: "4560070512" },
+　　　　　　{ title: "チョコレート戦争", author: "大石 真", isbn: "4652005024" },
+　　　　　　{ title: "きまぐれロボット", author: "星 新一", isbn: "4041303184" },
+　　　　　　{ title: "願いがかなうふしぎな日記", author: "本田 有明", isbn: "4569782531" },
+　　　　　　{ title: "先生、しゅくだいわすれました", author: "山本 悦子", isbn: "4494020419" },
+　　　　　　{ title: "三日間の幸福", author: "三秋 縋 ", isbn: "4048661698" },
+　　　　　　{ title: "三体", author: "劉 慈欣", isbn: "4150124345" },
+　　　　　　{ title: "ビリー・サマーズ 上", author: "スティーヴン・キング", isbn: "4163918310" },
+　　　　　　{ title: "桜のような僕の恋人", author: "宇山 佳佑", isbn: "4087455483" },
+　　　　　　{ title: "赤と青とエスキース", author: "青山 美智子", isbn: "4569904238" },
+　　　　　　{ title: "お探し物は図書室まで", author: "青山 美智子", isbn: "4591176010" },
+　　　　　　{ title: "鎌倉うずまき案内所", author: "青山 美智子", isbn: "4299014901" },
+　　　　　　{ title: "猫のお告げは樹の下で", author: "青山 美智子", isbn: "4299005309" },
+　　　　　　{ title: "ただいま神様当番", author: "青山 美智子", isbn: "4299028856" },
+　　　　　　{ title: "月曜日の抹茶カフェ", author: "青山 美智子", isbn: "4299044096" },
+　　　　　　{ title: "君と会えたから…… ", author: "喜多川 泰", isbn: "4799330535" },
+　　　　　　{ title: "スタートライン", author: "喜多川 泰", isbn: "4799311786" },
+　　　　　　{ title: "ライフトラベラー 人生の旅人", author: "喜多川 泰", isbn: "4799313657" },
+　　　　　　{ title: "葉桜の季節に君を想うということ", author: "歌野 晶午", isbn: "4167733013" },
+　　　　　　{ title: "アヒルと鴨のコインロッカー", author: "伊坂 幸太郎", isbn: "4488464017" },
+　　　　　　{ title: "重力ピエロ", author: "伊坂 幸太郎", isbn: "4101250235" },
+　　　　　　{ title: "ゴールデンスランバー", author: "伊坂 幸太郎", isbn: "410125026X" },
+　　　　　　{ title: "グラスホッパー", author: "伊坂 幸太郎", isbn: "404384901X" },
+　　　　　　{ title: "777 トリプルセブン", author: "伊坂 幸太郎", isbn: "4041141478" },
+　　　　　　{ title: "ＡＸ アックス", author: "伊坂 幸太郎", isbn: "4041059461" },
+　　　　　　{ title: "逆ソクラテス", author: "伊坂 幸太郎", isbn: "4087445321" },
+　　　　　　{ title: "君と夏が、鉄塔の上", author: "賽助", isbn: "4799322702" },
+　　　　　　{ title: "今日もぼっちです。", author: "賽助", isbn: "4834253406" },
+　　　　　　{ title: "地雷グリコ", author: "青崎 有吾", isbn: "404111165X" },
+　　　　　　{ title: "エレファントヘッド", author: "白井 智之", isbn: "4041141788" },
+　　　　　　{ title: "名探偵のいけにえ: 人民教会殺人事件", author: "白井 智之", isbn: "4103535229" },
+　　　　　　{ title: "方舟", author: "夕木 春央", isbn: "4065292689" },
+　　　　　　{ title: "十戒", author: "夕木 春央", isbn: "4065326877" },
+　　　　　　{ title: "アリアドネの声", author: "井上 真偽", isbn: "4344041275" },
+　　　　　　{ title: "殺戮にいたる病", author: "我孫子 武丸", isbn: "4062937808" },
+　　　　　　{ title: "アリス殺し", author: "小林 泰三", isbn: "4488420141" },
+　　　　　　{ title: "そして誰もいなくなった", author: "アガサ・クリスティー", isbn: "4151310800" },
+　　　　　　{ title: "オリエント急行の殺人", author: "アガサ・クリスティー", isbn: "4151310088" },
+　　　　　　{ title: "アクロイド殺し", author: "アガサ・クリスティー", isbn: "4151300031" },
+　　　　　　{ title: "ABC殺人事件", author: "アガサ・クリスティー", isbn: "4151300112" },
+　　　　　　{ title: "十角館の殺人", author: "綾辻 行人", isbn: "4062758571" },
+　　　　　　{ title: "マリアビートル", author: "伊坂 幸太郎", isbn: "4041009774" },
+　　　　　　{ title: "クスノキの番人", author: "東野 圭吾", isbn: "4408558036" },
+　　　　　　{ title: "プラチナデータ", author: "東野 圭吾", isbn: "4344418840" },
+　　　　　　{ title: "魔力の胎動", author: "東野 圭吾", isbn: "404109674X" },
+　　　　　　{ title: "ラプラスの魔女", author: "東野 圭吾", isbn: "4041054931" },
+　　　　　　{ title: "白鳥とコウモリ", author: "東野 圭吾", isbn: "4344037731" },
+　　　　　　{ title: "マスカレード・ゲーム", author: "東野 圭吾", isbn: "4087754618" },
+　　　　　　{ title: "透明な螺旋", author: "東野 圭吾", isbn: "4167922681" },
+　　　　　　{ title: "沈黙のパレード", author: "東野 圭吾", isbn: "4167917459" },
+　　　　　　{ title: "容疑者Xの献身", author: "東野 圭吾", isbn: "4167110121" },
+　　　　　　{ title: "ガリレオの苦悩", author: "東野 圭吾", isbn: "416711013X" },
+　　　　　　{ title: "希望の糸", author: "東野 圭吾", isbn: "4065286182" },
+            // その他の本を追加してください
+        ];
+
+        const associateTag = "tomoki2724-22";
+
+        function getRandomBooks() {
+            const shuffledBooks = books.sort(() => 0.5 - Math.random());
+            return shuffledBooks.slice(0, 6);
+        }
+
+        function displayBooks() {
+            const booksContainer = document.getElementById('books-container');
+            booksContainer.innerHTML = ''; // 以前の内容をクリア
+
+            const randomBooks = getRandomBooks();
+            randomBooks.forEach(book => {
+                const amazonLink = `https://www.amazon.co.jp/dp/${book.isbn}/ref=nosim?tag=${associateTag}`;
+                const coverImageUrl = `https://images-na.ssl-images-amazon.com/images/P/${book.isbn}.jpg`;
+                const bookItem = document.createElement('div');
+                bookItem.className = 'book-item';
+
+                bookItem.innerHTML = `
+                    <a href="${amazonLink}" target="_blank">
+                        <img src="${coverImageUrl}" alt="${book.title}" class="book-cover">
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author">${book.author}</div>
+                    </a>
+                `;
+                booksContainer.appendChild(bookItem);
+            });
+        }
+
+        document.getElementById('random-books-btn').addEventListener('click', displayBooks);
+
+        // ページ読み込み時に初回の表示
+        window.onload = displayBooks;
+    </script>
+</body>
+</html>
