@@ -178,7 +178,7 @@
 
         function getRandomBooks() {
             const shuffledBooks = books.sort(() => 0.5 - Math.random());
-            return shuffledBooks.slice(0, 6);
+            return window.innerWidth <= 767 ? shuffledBooks.slice(0, 1) : shuffledBooks.slice(0, 6);
         }
 
         function displayBooks() {
@@ -210,3 +210,4 @@
     </script>
 </body>
 </html>
+
