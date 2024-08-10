@@ -99,14 +99,23 @@
             }
 
             .book-item {
-                width: 100%;
-                max-width: 300px;
-                margin-bottom: 20px;
+                width: 90%;
+                max-width: 280px;
+                margin-bottom: 15px;
             }
 
             .book-cover {
-                width: 100%;
-                height: auto;
+                width: 100px;
+                height: 150px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            #random-books-btn {
+                padding: 10px 20px;
+                font-size: 16px;
             }
         }
     </style>
@@ -126,7 +135,7 @@
 
     <script>
         const books = [
-           { title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
+{ title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
             { title: "君の名は。", author: "新海誠", isbn: "4041026229" },
             { title: "1Q84", author: "村上春樹", isbn: "4101001596" },
             { title: "コンビニ人間", author: "村田沙耶香", isbn: "4167911302" },
@@ -323,6 +332,18 @@
 　　　　　　{ title: "俺ではない炎上", author: "浅倉 秋成", isbn: "4575527580" },
 　　　　　　{ title: "＃真相をお話しします", author: "結城　真一郎", isbn: "4101032637" },
 　　　　　　{ title: "難問の多い料理店", author: "結城　真一郎", isbn: "4087718700" },
+            { title: "凜として弓を引く", author: "碧野 圭 ", isbn: "4065257077" },
+            { title: "凛の弦音", author: "我孫子 武丸 ", isbn: "433479386X" },
+            { title: "卒業タイムリミット", author: "辻堂 ゆめ", isbn: "4575525502" },
+            { title: "いなくなった私へ", author: "辻堂 ゆめ", isbn: "4800251176" },
+            { title: "ロンドン謎解き結婚相談所", author: "アリスン・モントクレア", isbn: "4488134092" },
+            { title: "ワニの町へ来たスパイ", author: "ジャナ・デリオン", isbn: "4488196047" },
+            { title: "カモメに飛ぶことを教えた猫", author: "ルイス・セプルベダ",  isbn: "456007223X" },
+            { title: "通い猫アルフィーの奇跡", author: "レイチェル ウェルズ ",  isbn: "4596550042" },
+            { title: "猫を処方いたします。", author: "石田 祥",  isbn: "456990288X" },
+            { title: "六人の嘘つきな大学生", author: "浅倉 秋成",  isbn: "4041134013" },
+            { title: "教室が、ひとりになるまで", author: "浅倉 秋成",  isbn: "4041096855" },
+            { title: "ノワール・レヴナント", author: "浅倉 秋成",  isbn: "4041096863" },
             // ... ここに他の本のデータを追加
         ];
 
@@ -344,13 +365,12 @@
                 const bookItem = document.createElement('div');
                 bookItem.className = 'book-item';
 
-                bookItem.innerHTML = `
-                    <a href="${amazonLink}" target="_blank">
+                bookItem.innerHTML = 
+                    `<a href="${amazonLink}" target="_blank">
                         <img src="${coverImageUrl}" alt="${book.title}" class="book-cover">
                         <div class="book-title">${book.title}</div>
                         <div class="book-author">${book.author}</div>
-                    </a>
-                `;
+                    </a>`;
                 booksContainer.appendChild(bookItem);
             });
         }
@@ -363,6 +383,3 @@
 </body>
 
 </html>
-
-
-
