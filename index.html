@@ -17,16 +17,18 @@
         }
 
         header {
-            background-color: #ffcccc;
+            background: linear-gradient(135deg, #ff66b2, #ff99cc);
             padding: 20px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            color: #333;
+            color: #fff;
             font-size: 48px;
             margin: 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         #books-container {
@@ -44,6 +46,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 200px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .book-cover {
@@ -123,7 +126,7 @@
 
     <script>
         const books = [
-{ title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
+           { title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
             { title: "君の名は。", author: "新海誠", isbn: "4041026229" },
             { title: "1Q84", author: "村上春樹", isbn: "4101001596" },
             { title: "コンビニ人間", author: "村田沙耶香", isbn: "4167911302" },
@@ -360,5 +363,6 @@
 </body>
 
 </html>
+
 
 
