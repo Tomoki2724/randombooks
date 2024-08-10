@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,87 +9,118 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            padding: 50px;
             margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+
         header {
-            text-align: left;
-            margin-bottom: 20px;
+            background-color: #ffcccc;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
-            font-size: 36px;
-            margin: 0;
             color: #333;
+            font-size: 48px;
+            margin: 0;
         }
+
         #books-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            padding: 20px;
         }
+
         .book-item {
             background-color: white;
             padding: 10px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 150px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
             text-align: center;
         }
+
         .book-cover {
-            width: 100px;
-            height: 150px;
+            width: 150px;
+            height: 225px;
             object-fit: cover;
             margin-bottom: 10px;
         }
+
         .book-title {
             font-size: 16px;
             margin-bottom: 5px;
         }
+
         .book-author {
             font-size: 14px;
             color: #555;
             margin-bottom: 10px;
         }
+
         #random-books-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 18px;
             background-color: #007BFF;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
+
         #random-books-btn:hover {
             background-color: #0056b3;
         }
+
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 10px;
+            background-color: #ffcccc;
+            font-size: 14px;
+        }
+
         @media (max-width: 767px) {
             #books-container {
-                display: block;
-                text-align: center;
+                flex-direction: column;
+                align-items: center;
             }
+
             .book-item {
+                width: 90%;
+            }
+
+            .book-cover {
                 width: 100%;
-                max-width: 300px;
-                margin: 0 auto 20px auto;
+                height: auto;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>ジャケ買い！</h1>
     </header>
-    
+
     <div id="books-container"></div>
     <button id="random-books-btn">別の本を紹介する</button>
 
+    <footer>
+        Amazonのアソシエイトとして、［ジャケ買い！］は適格販売により収入を得ています。
+    </footer>
+
     <script>
         const books = [
-　　　　　　{ title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
+            { title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
             { title: "君の名は。", author: "新海誠", isbn: "4041026229" },
             { title: "1Q84", author: "村上春樹", isbn: "4101001596" },
             { title: "コンビニ人間", author: "村田沙耶香", isbn: "4167911302" },
@@ -217,7 +249,7 @@
 　　　　　　{ title: "君の背中に見た夢は", author: "外山 薫", isbn: "4047378194" },
 　　　　　　{ title: "世界は「」で満ちている", author: "櫻 いいよ", isbn: "4569788629" },
 　　　　　　{ title: "バスを降りたら", author: "眞島 めいり", isbn: "4569881017" },
-            { title: "下町ロケット", author: "池井戸 潤 ", isbn: "4094088962" },
+　　　　　　{ title: "下町ロケット", author: "池井戸 潤 ", isbn: "4094088962" },
 　　　　　　{ title: "銀翼のイカロス", author: "池井戸 潤 ", isbn: "4167909170" },
 　　　　　　{ title: "オレたちバブル入行組", author: "池井戸 潤 ", isbn: "4167728028" },
 　　　　　　{ title: "アキラとあきら", author: "池井戸 潤 ", isbn: "4198942307" },
@@ -231,7 +263,7 @@
 　　　　　　{ title: "シャイロックの子供たち", author: "池井戸 潤 ", isbn: "4167728036" },
 　　　　　　{ title: "不祥事", author: "池井戸 潤 ", isbn: "4408552836" },
 　　　　　　{ title: "銀行総務特命", author: "池井戸 潤 ", isbn: "4062771403" },
-           { title: "深夜特急", author: "沢木 耕太郎", isbn: "4101235287" },
+　　　　　　{ title: "深夜特急", author: "沢木 耕太郎", isbn: "4101235287" },
 　　　　　　{ title: "君が夏を走らせる", author: "瀬尾 まいこ ", isbn: "4101297746" },
 　　　　　　{ title: "天国はまだ遠く", author: "瀬尾 まいこ ", isbn: "4101297711" },
 　　　　　　{ title: "卵の緒", author: "瀬尾 まいこ", isbn: "410129772X" },
@@ -284,15 +316,15 @@
 　　　　　　{ title: "おれは一万石", author: "千野 隆司", isbn: "4575668508" },
 　　　　　　{ title: "俺ではない炎上", author: "浅倉 秋成", isbn: "4575527580" },
 　　　　　　{ title: "＃真相をお話しします", author: "結城　真一郎", isbn: "4101032637" },
-　　　　　　{ title: "難問の多い料理店", author: "結城　真一郎", isbn: "4087718700" }, 
-　　　　   // その他の本を追加してください
+　　　　　　{ title: "難問の多い料理店", author: "結城　真一郎", isbn: "4087718700" },
+            // ... ここに他の本のデータを追加
         ];
 
         const associateTag = "tomoki2724-22";
 
         function getRandomBooks() {
             const shuffledBooks = books.sort(() => 0.5 - Math.random());
-            return window.innerWidth <= 767 ? shuffledBooks.slice(0, 1) : shuffledBooks.slice(0, 6);
+            return shuffledBooks.slice(0, 4); // デスクトップでは4冊表示
         }
 
         function displayBooks() {
@@ -323,5 +355,6 @@
         window.onload = displayBooks;
     </script>
 </body>
+
 </html>
 
