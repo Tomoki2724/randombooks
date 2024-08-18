@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ジャケ買い！novels</title>
+    <title>ジャケ買い！novels - 名作を表紙買いできるサイト</title>
+
+    <meta name="description" content="名作小説を表紙買いできるサイト。ガチャ機能で思いがけない本との出会いを楽しみましょう。まるで本屋のような購入体験がここにあります。">
+    <meta name="keywords" content="小説, 表紙買い, 名作, 本屋, ガチャ, ランダム">
+    <meta name="robots" content="index, follow">
+
+    <meta name="google-site-verification" content="tO3ToBh_O_Km-nBassvwiD6FLioTznIXM1Bev5RpgD8" />
+
     <style>
-       <meta name="google-site-verification" content="tO3ToBh_O_Km-nBassvwiD6FLioTznIXM1Bev5RpgD8" />
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -141,7 +147,8 @@
     </footer>
 
     <script>
-        const books = [{ title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
+        const books = [
+            { title: "ノルウェイの森", author: "村上春樹", isbn: "B07KVTV42B" },
             { title: "君の名は。", author: "新海誠", isbn: "4041026229" },
             { title: "1Q84", author: "村上春樹", isbn: "4101001596" },
             { title: "コンビニ人間", author: "村田沙耶香", isbn: "4167911302" },
@@ -451,7 +458,6 @@
             { title: "望郷", author: "湊 かなえ",  isbn: "416790523X" },
             { title: "ポイズンドーター・ホーリーマザー", author: "湊 かなえ",  isbn: "4334776965" },
             { title: "ユートピア", author: "湊 かなえ",  isbn: "4087457486" },
-        　　
             // ... ここに他の本のデータを追加
         ];
 
@@ -473,9 +479,9 @@
                 const bookItem = document.createElement('div');
                 bookItem.className = 'book-item';
 
-                bookItem.innerHTML = 
-                    `<a href="${amazonLink}" target="_blank">
-                        <img src="${coverImageUrl}" alt="${book.title}" class="book-cover">
+                bookItem.innerHTML = `
+                    <a href="${amazonLink}" target="_blank">
+                        <img src="${coverImageUrl}" alt="${book.title}の表紙" class="book-cover">
                         <div class="book-title">${book.title}</div>
                         <div class="book-author">${book.author}</div>
                     </a>`;
